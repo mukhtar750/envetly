@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evently - Sign In / Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .auth-container {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(129, 140, 248, 0.1) 100%);
+        }
+        
+        .auth-card {
+            box-shadow: 0 10px 30px -5px rgba(79, 70, 229, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .auth-card:hover {
+            box-shadow: 0 15px 40px -5px rgba(79, 70, 229, 0.15);
+        }
+        
+        .input-field:focus {
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+        
+        .toggle-forms {
+            position: relative;
+        }
+        
+        .toggle-forms::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #6366f1;
+            transition: width 0.3s ease;
+        }
+        
+        .toggle-forms.active::after {
+            width: 100%;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-calendar-check text-indigo-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-indigo-600">Evently</span>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <a href="#" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Events</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="auth-container min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+            <div class="text-center">
+                <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+                    Welcome to Evently
+                </h2>
+                <p class="mt-2 text-sm text-gray-600">
+                    Join thousands of event organizers and attendees
+                </p>
+            </div>
+
+            <!-- Toggle between Sign In and Sign Up -->
+            <div class="flex justify-center space-x-6 mb-8">
+                <button id="signin-toggle" class="toggle-forms active text-gray-900 font-medium text-lg focus:outline-none">
+                    Sign In
+                </button>
+                <button id="signup-toggle" class="toggle-forms text-gray-500 font-medium text-lg focus:outline-none">
+                    Sign Up
+                </button>
+            </div>
+
+            <!-- Sign In Form -->
+            <div id="signin-form" class="auth-card bg-white py-8 px-4 shadow rounded-lg sm:px-10 animate-fade-in">
+                <form class="mt-8 space-y-6" action="#" method="POST">
+                    <input type="hidden" name="remember" value="true">
+                    <div class="rounded-md shadow-sm space-y-4">
+                        <div>
+                            <label for="email-address" class="sr-only">Email address</label>
+                            <input id="email-address" name="email" type="email" autocomplete="email" required class="input-field appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                        </div>
+                        <div>
+                            <label for="password" class="sr-only">Password</label>
+                            <input id="password" name="password" type="password" autocomplete="current-password" required class="input-field appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                            <label for="remember-me" class="ml-2 block text-sm text-gray-700">
+                                Remember me
+                            </label>
+                        </div>
+
+                        <div class="text-sm">
+                            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                Forgot your password?
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                                <i class="fas fa-sign-in-alt text-indigo-400 group-hover:text-indigo-300"></i>
+                            </span>
+                            Sign in
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">
+                                Or continue with
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-3 gap-3">
+                        <div>
+                            <a href="#" class="social-btn w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-transform">
+                                <i class="fab fa-facebook-f text-blue-600"></i>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="#" class="social-btn w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-transform">
+                                <i class="fab fa-google text-red-600"></i>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="#" class="social-btn w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-transform">
+                                <i class="fab fa-apple text-gray-800"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sign Up Form (Hidden by default) -->
+            <div id="signup-form" class="auth-card bg-white py-8 px-4 shadow rounded-lg sm:px-10 hidden animate-fade-in">
+                <form class="mt-8 space-y-6" action="#" method="POST">
+                    <input type="hidden" name="remember" value="true">
+                    <div class="rounded-md shadow-sm space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="first-name" class="sr-only">First name</label>
+                                <input id="first-name" name="first-name" type="text" autocomplete="given-name" required class="input-field appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="First name">
+                            </div>
+                            <div>
+                                <label for="last-name" class="sr-only">Last name</label>
+                                <input id="last-name" name="last-name" type="text" autocomplete="family-name" required class="input-field appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Last name">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="email-address-signup" class="sr-only">Email address</label>
+                            <input id="email-address-signup" name="email" type="email" autocomplete="email" required class="input-field appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                        </div>
+                        <div>
+                            <label for="password-signup" class="sr-only">Password</label>
+                            <input id="password-signup" name="password" type="password" autocomplete="new-password" required class="input-field appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+                        </div>
+                        <div>
+                            <label for="confirm-password" class="sr-only">Confirm Password</label>
+                            <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" required class="input-field appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Confirm Password">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <input id="terms" name="terms" type="checkbox" required class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="terms" class="ml-2 block text-sm text-gray-700">
+                            I agree to the <a href="#" class="text-indigo-600 hover:text-indigo-500">Terms</a> and <a href="#" class="text-indigo-600 hover:text-indigo-500">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                                <i class="fas fa-user-plus text-indigo-400 group-hover:text-indigo-300"></i>
+                            </span>
+                            Sign up
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">
+                                Or sign up with
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-3 gap-3">
+                        <div>
+                            <a href="#" class="social-btn w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-transform">
+                                <i class="fab fa-facebook-f text-blue-600"></i>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="#" class="social-btn w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-transform">
+                                <i class="fab fa-google text-red-600"></i>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="#" class="social-btn w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-transform">
+                                <i class="fab fa-apple text-gray-800"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-calendar-check text-indigo-400 text-xl mr-2"></i>
+                    <span class="text-lg font-bold text-white">Evently</span>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <p class="text-gray-400 text-sm">
+                        &copy; 2023 Evently, Inc. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const signInToggle = document.getElementById('signin-toggle');
+            const signUpToggle = document.getElementById('signup-toggle');
+            const signInForm = document.getElementById('signin-form');
+            const signUpForm = document.getElementById('signup-form');
+            
+            // Toggle between sign in and sign up forms
+            function toggleForms(showSignIn) {
+                if (showSignIn) {
+                    signInToggle.classList.add('active');
+                    signInToggle.classList.remove('text-gray-500');
+                    signInToggle.classList.add('text-gray-900');
+                    
+                    signUpToggle.classList.remove('active');
+                    signUpToggle.classList.add('text-gray-500');
+                    signUpToggle.classList.remove('text-gray-900');
+                    
+                    signInForm.classList.remove('hidden');
+                    signUpForm.classList.add('hidden');
+                } else {
+                    signUpToggle.classList.add('active');
+                    signUpToggle.classList.remove('text-gray-500');
+                    signUpToggle.classList.add('text-gray-900');
+                    
+                    signInToggle.classList.remove('active');
+                    signInToggle.classList.add('text-gray-500');
+                    signInToggle.classList.remove('text-gray-900');
+                    
+                    signUpForm.classList.remove('hidden');
+                    signInForm.classList.add('hidden');
+                }
+            }
+            
+            signInToggle.addEventListener('click', () => toggleForms(true));
+            signUpToggle.addEventListener('click', () => toggleForms(false));
+            
+            // Form validation for sign up
+            const signUpFormElement = signUpForm.querySelector('form');
+            signUpFormElement.addEventListener('submit', function(e) {
+                const password = document.getElementById('password-signup').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                
+                if (password !== confirmPassword) {
+                    e.preventDefault();
+                    alert('Passwords do not match!');
+                    document.getElementById('confirm-password').focus();
+                }
+                
+                // Additional validation can be added here
+            });
+            
+            // Password strength indicator (could be enhanced further)
+            const passwordInput = document.getElementById('password-signup');
+            passwordInput.addEventListener('input', function() {
+                // This is a simple example - you could add visual feedback
+                const strength = calculatePasswordStrength(this.value);
+                console.log('Password strength:', strength);
+            });
+            
+            function calculatePasswordStrength(password) {
+                // Simple strength calculation
+                let strength = 0;
+                if (password.length >= 8) strength++;
+                if (password.match(/[A-Z]/)) strength++;
+                if (password.match(/[0-9]/)) strength++;
+                if (password.match(/[^A-Za-z0-9]/)) strength++;
+                return strength;
+            }
+        });
+    </script>
+</body>
+</html>
